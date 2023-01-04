@@ -23,12 +23,17 @@
         }
     </style>
     <div class='product_block'>
-        <h1>{{ post.title }}</h1>
-        <h5>{{ post.description }}</h5>
-        <div class="dates">
-            <h5>{{ post.created_date }}</h5>
-            <h5>{{ post.modified_date }}</h5>
-        </div>
+<!--        <img src="/media/{{ product.image }}" alt="">-->
+        {% for product in products %}
+            <h1>{{ product.name }}</h1>
+            <h5>{{ product.description }}</h5>
+            <h5>{{ product.price }}</h5>
+            <h5>{{ product.category }}</h5>
+            <div class="dates">
+                <h5>{{ post.created_date }}</h5>
+                <h5>{{ post.modified_date }}</h5>
+            </div>
+        {% endfor %}
         <div class="ratings">
             {% for comment in comments %}
                 <div class="ratings_block">

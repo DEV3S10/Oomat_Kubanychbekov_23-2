@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Product
+from .models import Product, Category
 import datetime
 
 # Create your views here.
@@ -23,6 +23,15 @@ def product_review_view(request, id):
         product = Product.objects.get(id=id)
 
         return render(request, 'products/product_review.html', context={
-            'product': product
+            'product': product,
+            'category': product.category.title
         })
 
+
+def category_view(request):
+    if request.method == "GET":
+        categorys = Category.objects.all()
+
+        return render(request, 'category/index.html', context={
+            'categorys': categorys
+        })
