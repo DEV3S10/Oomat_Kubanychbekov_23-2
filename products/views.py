@@ -5,26 +5,39 @@ import datetime
 
 # Create your views here.
 
+PAGINATION_LIMIT = 3
+
 
 def main_view(request):
     return render(request, 'layouts/index.html')
 
 
 def products_view(request):
-    if request.method == 'GET':
+    if request.method == "GET":
         products = Product.objects.all()
-        category_id = int(request.GET.get('category', 0))
+        category_id = int(request.GET.get('category_id', 0))
         text = request.GET.get('text')
+        page = int(request.GET.get('page', 1))
 
         if category_id:
-            products = Product.objects.filter(category_in=[category_id])
+            products = Product.objects.filter(hastsag_in=[category_id])
         else:
-            product = Product.objects.all()
+            post = Product.objects.all()
         if text:
             products = Product.objects.filter(title_icontains=text)
 
+        max_page = products.__len__() / PAGINATION_LIMIT
+
+        if round(max_page) < max_page:
+            max_page = round(max_page) + 1
+
+        max_page = int(max_page)
+        products = products[PAGINATION_LIMIT * (page - 1):PAGINATION_LIMIT * page]
+
         return render(request, 'products/products.html', context={
-            'products': products
+            'products': products,
+            'user': None if request.user.is_anonymous else request.user,
+            'pages': range(1, max_page + 1)
         })
 
 
