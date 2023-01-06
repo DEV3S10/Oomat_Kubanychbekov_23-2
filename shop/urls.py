@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from products.views import main_view, products_view, product_review_view, category_view, product_create_view
+from users.views import login_view, logout_view, register_view
 from django.conf.urls.static import static
 from shop import settings
 
@@ -26,6 +27,9 @@ urlpatterns = [
     path('products/<int:id>/', product_review_view),
     path('create/', product_create_view),
     path('category/', category_view),
+    path('users/login/', login_view),
+    path('users/logout/', logout_view),
+    path('users/register/', register_view)
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

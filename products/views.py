@@ -34,7 +34,7 @@ def product_review_view(request, id):
         form = ReviewCreateForm(data=request.POST)
 
         context = {
-            'post': product,
+            'product': product,
             'review': product.comment.set.all(),
             'category': product.hashtags.all(),
             'comment form': ReviewCreateForm
@@ -55,9 +55,8 @@ def product_review_view(request, id):
         else:
             return render(request, 'products/product_review.html', context={
                 'product': product,
-                'comments': product.comment_set.all(),
-                'hastahs': product.hashtags.all(),
-                'comment form': ReviewCreateForm
+                'category': product.hashtags.all(),
+                'review_form': ReviewCreateForm
             })
 
 
@@ -89,6 +88,7 @@ def product_create_view(request):
             return render(request, 'products/create.html', context=errors)
 
         Product.objects.create(
+            author=request.user,
             name=request.POST.get('name'),
             description=request.POST.get('description'),
             price=request.POST.get('price')
