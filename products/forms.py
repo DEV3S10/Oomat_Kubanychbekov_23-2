@@ -6,3 +6,6 @@ class ProductCreateForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
     price = forms.FloatField()
 
+
+class ReviewCreateForm(forms.Form):
+    title = forms.CharField(widget=forms.Textarea)

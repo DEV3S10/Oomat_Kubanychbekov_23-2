@@ -29,16 +29,11 @@
             <h5>{{ product.description }}</h5>
             <h5>{{ product.price }}</h5>
             <h5>{{ product.category }}</h5>
-            <div class="dates">
-                <h5>{{ post.created_date }}</h5>
-                <h5>{{ post.modified_date }}</h5>
-            </div>
         {% endfor %}
         <div class="ratings">
             {% for comment in comments %}
                 <div class="ratings_block">
                     <h5>{{ comment.text }}</h5>
-                    <p>{{ comment.created_date }}</p>
                 </div>
             {% endfor %}
         </div>

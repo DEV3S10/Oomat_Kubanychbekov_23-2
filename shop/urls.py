@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from products.views import main_view, products_view, product_review_view, category_view
+from products.views import main_view, products_view, product_review_view, category_view, product_create_view
 from django.conf.urls.static import static
 from shop import settings
 
@@ -24,6 +24,7 @@ urlpatterns = [
     path('', main_view),
     path('products/', products_view),
     path('products/<int:id>/', product_review_view),
+    path('products/create/', product_create_view),
     path('category/', category_view),
 ]
 
