@@ -3,15 +3,7 @@
 {% block content %}
     <form action="product/create/" method="post">
         {% csrf_token %}
-        <p>name {{ name_error }}</p>
-        <input type="text" name="title">
-        
-        <p>description {{ description_error }}</p>
-        <textarea name="description" cols="30" rows="10"></textarea>
-        
-        <p>price</p>
-        <input type="number" name="price">
-
+        {{ form.as_p }}
         <input type="submit" class="submit">
     </form>
 {% endblock %}

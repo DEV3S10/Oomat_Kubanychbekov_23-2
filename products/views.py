@@ -72,7 +72,9 @@ def category_view(request):
 
 def product_create_view(request):
     if request.method == 'GET':
-        return render(request, 'products/create.html')
+        return render(request, 'products/create.html', context={
+            'form': ProductCreateForm
+        })
 
     if request.method == "POST":
         errors = {}
